@@ -1,6 +1,6 @@
 module Bob exposing (..)
 
-import Regex
+import Char exposing (..)
 import String exposing (..)
 
 hey : String -> String
@@ -12,8 +12,8 @@ hey statement =
 
 isYelling : String -> Bool
 isYelling statement =
-  Regex.contains (Regex.regex "[A-Za-z]+") statement
-    && toUpper statement == statement
+  any isUpper(statement)
+    && (String.toUpper statement) == statement
 
 isAsking : String -> Bool
 isAsking statement =
@@ -22,4 +22,3 @@ isAsking statement =
 isSilence : String -> Bool
 isSilence statement =
   isEmpty(trim statement)
-
