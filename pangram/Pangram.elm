@@ -7,28 +7,28 @@ import String exposing (..)
 
 
 lowerAlphaCodeSet =
-    Set.fromList [97..122]
+  Set.fromList [97..122]
 
 
 isPangram : String -> Bool
 isPangram sentence =
-    let
-        toLowerCodeSet =
-            (\s ->
-                s
-                    |> String.toLower
-                    |> String.toList
-                    |> List.map Char.toCode
-                    |> Set.fromList
-            )
+  let
+    toLowerCodeSet =
+      (\s ->
+        s
+          |> String.toLower
+          |> String.toList
+          |> List.map Char.toCode
+          |> Set.fromList
+      )
 
-        hasAtLeastOneAlphaCode =
-            (\set ->
-                set
-                    |> Set.diff lowerAlphaCodeSet
-                    |> Set.isEmpty
-            )
-    in
-        sentence
-            |> toLowerCodeSet
-            |> hasAtLeastOneAlphaCode
+    hasAtLeastOneAlphaCode =
+      (\set ->
+        set
+          |> Set.diff lowerAlphaCodeSet
+          |> Set.isEmpty
+      )
+  in
+    sentence
+      |> toLowerCodeSet
+      |> hasAtLeastOneAlphaCode
