@@ -5,12 +5,20 @@ import List exposing (map)
 import Set exposing (..)
 import String exposing (..)
 
+lowerAlphaCodeSet = Set.fromList [97..122]
+
 isPangram : String -> Bool
 isPangram sentence =
-  sentence
-    |> String.toLower
-    |> String.toList
-    |> List.map Char.toCode
-    |> Set.fromList
-    |> Set.diff (Set.fromList [97..122])
-    |> Set.isEmpty
+  let
+      toLowerCodeSet = (
+        \s -> s
+          |> String.toLower
+          |> String.toList
+          |> List.map Char.toCode
+          |> Set.fromList
+      )
+  in
+      sentence
+        |> toLowerCodeSet
+        |> Set.diff lowerAlphaCodeSet
+        |> Set.isEmpty
