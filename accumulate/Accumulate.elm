@@ -1,7 +1,9 @@
 module Accumulate exposing (..)
 
-import List exposing (foldr)
-
 accumulate : (a -> a) -> List a -> List a
 accumulate mapper list =
-  foldr (\item aList -> mapper item :: aList) [] list
+  case list of
+    head::tail ->
+      (mapper head) :: (accumulate mapper tail)
+    [] ->
+      list
